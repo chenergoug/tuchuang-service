@@ -52,7 +52,7 @@ class UserService {
     return item[0] > 0 ? true : false
   }
   // 删除用户信息
-  async deleteUser(id) {
+  async deleteUser({ id }) {
     const item = await user.destroy({ where: { id } })
     return item > 0 ? true : false
   }
