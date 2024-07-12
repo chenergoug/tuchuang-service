@@ -4,17 +4,17 @@ const Role = db.define('t_role', {
   label: {
     type: DataTypes.STRING,
     allowNull: false,
-    comment: 'role name'
+    comment: '角色名称'
   },
   value: {
     type: DataTypes.STRING,
     allowNull: false,
-    comment: 'role value'
+    comment: '角色值'
   },
   key: {
     type: DataTypes.STRING,
     allowNull: false,
-    comment: 'role type'
+    comment: '角色类型'
   }
 })
 

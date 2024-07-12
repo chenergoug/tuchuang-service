@@ -1,12 +1,7 @@
 const { user } = require('../service')
 const { createUser, getUser, updateUser, deleteUser, getUserAll } = user
-function err_bodt(err) {
-  return {
-    code: 500,
-    success: false,
-    message: err.message
-  }
-}
+const { UnusualRequest } = require('./config')
+
 class UserController {
   // 创建用户
   async foundUser(ctx, next) {
@@ -19,7 +14,7 @@ class UserController {
       }
       next()
     } catch (err) {
-      ctx.body = err_bodt(err)
+      ctx.body = UnusualRequest(err)
     }
   }
   // 查询单一用户
@@ -33,7 +28,7 @@ class UserController {
       }
       next()
     } catch (err) {
-      ctx.body = err_bodt(err)
+      ctx.body = UnusualRequest(err)
     }
   }
   // 查询用户列表所有信息
@@ -48,7 +43,7 @@ class UserController {
       }
       next()
     } catch (err) {
-      ctx.body = err_bodt(err)
+      ctx.body = UnusualRequest(err)
     }
   }
   // 更新用户信息
@@ -62,7 +57,7 @@ class UserController {
       }
       next()
     } catch (err) {
-      ctx.body = err_bodt(err)
+      ctx.body = UnusualRequest(err)
     }
   }
 
@@ -77,7 +72,7 @@ class UserController {
       }
       next()
     } catch (err) {
-      ctx.body = err_bodt(err)
+      ctx.body = UnusualRequest(err)
     }
   }
 }

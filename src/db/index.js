@@ -13,11 +13,11 @@ const DB = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PAW, {
   }
 })
 
-// 测试链接是否成功
+// // 测试链接是否成功
 // async function testDb() {
 //   try {
 //     await DB.authenticate()
-//     console.log('Connection has been established successfully.')
+//     console.log('mysql连接成功')
 //   } catch (error) {
 //     console.error('Unable to connect to the database:', error)
 //   }

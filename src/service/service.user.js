@@ -2,7 +2,7 @@ const { user } = require('../model')
 
 class UserService {
   // 创建用户
-  async createUser(name, password, is_admin, phone, role, role_name) {
+  async createUser({ name, password, is_admin, phone, role, role_name }) {
     const item = await user.create({ name, password, is_admin, phone, role, role_name })
     return item.dataValues
   }
