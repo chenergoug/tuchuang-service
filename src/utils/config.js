@@ -6,7 +6,15 @@ const UnusualRequest = function (err) {
     message: err.message
   }
 }
+const SucceedRequest = function (data) {
+  return {
+    code: 200,
+    message: '创建成功',
+    data
+  }
+}
 
 module.exports = {
-  UnusualRequest
+  UnusualRequest,
+  SucceedRequest
 }
