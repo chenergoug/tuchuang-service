@@ -4,7 +4,7 @@ function getWeChatAccessToken(data) {
   return request({
     url: 'https://api.weixin.qq.com/sns/jscode2session',
     method: 'GET',
-    data
+    params: data
   })
 }
 
