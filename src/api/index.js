@@ -8,6 +8,6 @@ function getWeChatAccessToken(data) {
   })
 }
 
-module = {
+module.exports = {
   getWeChatAccessToken
 }
