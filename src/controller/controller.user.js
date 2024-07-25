@@ -47,7 +47,7 @@ class UserController {
   async loginUser(ctx, next) {
     const { user } = ctx.state
     if (user === null) {
-      ctx.body = UnusualRequest(null, '用户不存在')
+      ctx.body = UnusualRequest(null, '账号或密码错误')
     } else {
       ctx.body = SucceedRequest(user, '登录成功')
       await next()
