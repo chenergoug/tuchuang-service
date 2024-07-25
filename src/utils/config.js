@@ -1,15 +1,15 @@
 // 异常请求统一处理
-const UnusualRequest = function (err) {
+const UnusualRequest = function (data, text) {
   return {
     code: 500,
-    success: false,
-    message: err.message
+    message: text || '未知错误',
+    data
   }
 }
-const SucceedRequest = function (data) {
+const SucceedRequest = function (data, text) {
   return {
     code: 200,
-    message: '创建成功',
+    message: text || '请求成功',
     data
   }
 }

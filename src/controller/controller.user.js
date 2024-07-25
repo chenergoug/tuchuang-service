@@ -6,9 +6,14 @@ class UserController {
   // 创建用户
   async foundUser(ctx, next) {
     try {
-      const user = await createUser(ctx.request.body)
-      ctx.body = SucceedRequest(user)
-      next()
+      const { user } = ctx.state
+      if (user === null) {
+        await createUser(ctx.request.body)
+        ctx.body = SucceedRequest(null)
+        await next()
+      } else {
+        ctx.body = UnusualRequest(null, '创建失败')
+      }
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -20,7 +25,7 @@ class UserController {
     try {
       const user = await getUserAll(data)
       ctx.body = SucceedRequest(user)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -30,10 +35,22 @@ class UserController {
   async selectUser(ctx, next) {
     try {
       const user = await getUser(ctx.request.body)
+      ctx.state.user = user
       ctx.body = SucceedRequest(user)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
+    }
+  }
+
+  // 用户登录
+  async loginUser(ctx, next) {
+    const { user } = ctx.state
+    if (user === null) {
+      ctx.body = UnusualRequest(null, '用户不存在')
+    } else {
+      ctx.body = SucceedRequest(user, '登录成功')
+      await next()
     }
   }
 
@@ -42,7 +59,7 @@ class UserController {
     try {
       const user = await updateUser(ctx.request.body)
       ctx.body = SucceedRequest(user)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -53,7 +70,7 @@ class UserController {
     try {
       const user = await deleteUser(ctx.request.query)
       ctx.body = SucceedRequest(user)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }

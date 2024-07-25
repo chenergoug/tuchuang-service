@@ -7,7 +7,7 @@ class DictController {
     try {
       const dict = await createDict(ctx.request.body)
       ctx.body = SucceedRequest(dict)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -19,7 +19,7 @@ class DictController {
     try {
       const dict = await inquireDictAll(data)
       ctx.body = SucceedRequest(dict)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -30,7 +30,7 @@ class DictController {
     try {
       const dict = await inquireDict(ctx.request.body)
       ctx.body = SucceedRequest(dict)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -41,7 +41,7 @@ class DictController {
     try {
       const dict = await updateDict(ctx.request.body)
       ctx.body = SucceedRequest(dict)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -52,7 +52,7 @@ class DictController {
     try {
       const dict = await deleteDict(ctx.request.query)
       ctx.body = SucceedRequest(dict)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }

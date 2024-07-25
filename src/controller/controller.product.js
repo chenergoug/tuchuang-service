@@ -7,7 +7,7 @@ class ProductController {
     try {
       const product = await createProduct(ctx.request.body)
       ctx.body = SucceedRequest(product)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -19,7 +19,7 @@ class ProductController {
     try {
       const product = await inquireProductAll(data)
       ctx.body = SucceedRequest(product)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -30,7 +30,7 @@ class ProductController {
     try {
       const product = await inquireProduct(ctx.request.body)
       ctx.body = SucceedRequest(product)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -41,7 +41,7 @@ class ProductController {
     try {
       const product = await updateProduct(ctx.request.body)
       ctx.body = SucceedRequest(product)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -52,7 +52,7 @@ class ProductController {
     try {
       const product = await deleteProduct(ctx.request.query)
       ctx.body = SucceedRequest(product)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }

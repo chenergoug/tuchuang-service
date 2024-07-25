@@ -7,7 +7,7 @@ class MenuController {
     try {
       const menu = await createMenu(ctx.request.body)
       ctx.body = SucceedRequest(menu)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -19,7 +19,7 @@ class MenuController {
     try {
       const menu = await inquireMenuAll(data)
       ctx.body = SucceedRequest(menu)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -30,7 +30,7 @@ class MenuController {
     try {
       const menu = await inquireMenu(ctx.request.body)
       ctx.body = SucceedRequest(menu)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -41,7 +41,7 @@ class MenuController {
     try {
       const menu = await updateMenu(ctx.request.body)
       ctx.body = SucceedRequest(menu)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -52,7 +52,7 @@ class MenuController {
     try {
       const menu = await deleteMenu(ctx.request.query)
       ctx.body = SucceedRequest(menu)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }

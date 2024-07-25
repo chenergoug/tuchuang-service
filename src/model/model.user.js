@@ -21,12 +21,13 @@ const User = db.define('t_user', {
   phone: {
     type: DataTypes.STRING(11),
     allowNull: true,
+    unique: true,
     comment: 'phone'
   },
   role: {
     type: DataTypes.STRING,
     defaultValue: false,
-    comment: '角色'
+    comment: '角色 0 admin 1 用户 2 游客'
   },
   role_name: {
     type: DataTypes.STRING,

@@ -7,7 +7,7 @@ class RoleController {
     try {
       const role = await createRole(ctx.request.body)
       ctx.body = SucceedRequest(role)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -19,7 +19,7 @@ class RoleController {
     try {
       const role = await inquireRoleAll(data)
       ctx.body = SucceedRequest(role)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -30,7 +30,7 @@ class RoleController {
     try {
       const role = await inquireRole(ctx.request.body)
       ctx.body = SucceedRequest(role)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -41,7 +41,7 @@ class RoleController {
     try {
       const role = await updateRole(ctx.request.body)
       ctx.body = SucceedRequest(role)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -52,7 +52,7 @@ class RoleController {
     try {
       const role = await deleteRole(ctx.request.query)
       ctx.body = SucceedRequest(role)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }

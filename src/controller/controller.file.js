@@ -7,7 +7,7 @@ class FileController {
     try {
       const file = await createFile(ctx.request.body)
       ctx.body = SucceedRequest(file)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -18,7 +18,7 @@ class FileController {
     try {
       const file = await inquireFileAll(data)
       ctx.body = SucceedRequest(file)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -28,7 +28,7 @@ class FileController {
     try {
       const file = await inquireFile(ctx.request.body)
       ctx.body = SucceedRequest(file)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -38,7 +38,7 @@ class FileController {
     try {
       const file = await updateFile(ctx.request.body)
       ctx.body = SucceedRequest(file)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }
@@ -48,7 +48,7 @@ class FileController {
     try {
       const file = await deleteFile(ctx.request.query)
       ctx.body = SucceedRequest(file)
-      next()
+      await next()
     } catch (err) {
       ctx.body = UnusualRequest(err)
     }

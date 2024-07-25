@@ -1,4 +1,6 @@
 // const { UnusualRequest, SucceedRequest } = require('../utils/config')
+const { user } = require('../service')
+const { createUser, getUser, updateUser, deleteUser, getUserAll } = user
 const { WECHAT_APPID, WECHAT_SECRET } = require('../config')
 const { getWeChatAccessToken, getWeChatUserphone } = require('../api')
 const { M_AccreditSuccess, M_AccreditFailure, M_ServerError } = require('../utils/conditions')
@@ -19,7 +21,7 @@ class AccreditController {
     }
     await next()
   }
-  // 获取用户手机号码
+  // 获取用户手机号码并在数据库创建用户
   async getWechatPhoneNumber(ctx, next) {
     const { access_token, code } = ctx.state
     try {
@@ -28,14 +30,30 @@ class AccreditController {
         ctx.body = M_AccreditFailure
       } else {
         ctx.body = M_AccreditSuccess
-        const phone = res.phone_info.phoneNumber
+        ctx.state.phone = res.phone_info.phoneNumber
         await next()
       }
     } catch (error) {
       ctx.body = M_AccreditFailure(error.message)
     }
   }
-  // 获取用户信息
-  async getWechatUserInfo(ctx, next) {}
+  // 创建用户信息
+  async getCreateWechatUser(ctx, next) {
+    try {
+      const { phone } = ctx.state
+      const data = {
+        name: '微信用户',
+        password: '123456',
+        is_admin: false,
+        phone,
+        role: '1',
+        role_name: 'user'
+      }
+      await createUser(data)
+    } catch (error) {
+      ctx.body = M_ServerError(error.message)
+    }
+    await next()
+  }
 }
 module.exports = new AccreditController()
